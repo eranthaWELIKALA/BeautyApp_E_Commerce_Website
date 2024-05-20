@@ -1,0 +1,74 @@
+﻿@model IEnumerable<BeautyApp.Models.Product>
+
+@{
+    ViewData["Title"] = "Store";
+}
+
+@if (User.IsInRole("Admin"))
+{
+    <div class="d-flex justify-content-end mb-3">
+        <a asp-action="Create" class="btn btn-dark">Create New</a>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-3">
+        <form asp-action="Index" method="get">
+            <div class="form-group">
+                <label for="Name">Name</label>
+                <input type="text" class="form-control" id="Name" name="Name" value="@Context.Request.Query["Name"]" />
+            </div>
+            <div class="form-group">
+                <label for="MinPrice">Min Price</label>
+                <input type="number" class="form-control" id="MinPrice" name="MinPrice" value="@Context.Request.Query["MinPrice"]" />
+            </div>
+            <div class="form-group">
+                <label for="MaxPrice">Max Price</label>
+                <input type="number" class="form-control" id="MaxPrice" name="MaxPrice" value="@Context.Request.Query["MaxPrice"]" />
+            </div>
+            <button type="submit" class="btn btn-dark mt-2">Filter</button>
+        </form>
+    </div>
+    <div class="col-md-9 pb-5" style="max-height: calc(100vh - 120px); overflow-y: auto;">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 mb-4 shadow-sm">
+                        <img src="@item.ImageUrl" class="card-img-top" alt="@item.Name" style="width: 100px; height: 100px; object-fit: cover;" />
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">@item.Name</h5>
+                            <p class="card-text">@item.Description</p>
+                            <div class="mt-auto">
+                                <p class="card-text"><strong>Price: </strong>@item.Price.ToString("C")</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">View</a>
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                        }
+                                    </div>
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">Delete</a>
+                                    }
+                                    @if (User.IsInRole("Customer"))
+                                    {
+                                        <form asp-controller="Carts" asp-action="AddToCart" method="post" class="d-inline">
+                                            <input type="hidden" name="productId" value="@item.Id" />
+                                            <input type="hidden" name="quantity" value="1" />
+                                            <button type="submit" class="btn btn-sm btn-outline-secondary">
+                                                <img src="~/images/icons/cart-black-icon.png" alt="Cart" style="width: 20px; height: 20px; margin-right: 5px;" />
+                                            </button>
+                                        </form>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

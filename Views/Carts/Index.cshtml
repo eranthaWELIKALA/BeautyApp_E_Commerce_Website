@@ -1,0 +1,67 @@
+﻿@model BeautyApp.Models.Cart
+
+@{
+    ViewData["Title"] = "Your Shopping Cart";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (Model?.CartItems?.Count > 0)
+{
+    <table class="table" style="max-height: calc(100vh - 200px); overflow-y: auto;">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.CartItems)
+            {
+                <tr>
+                    <td>@item.Product.Name</td>
+                    <td>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <form asp-controller="Carts" asp-action="DecrementQuantity" method="post">
+                                    <input type="hidden" name="productId" value="@item.ProductId" />
+                                    <button class="btn btn-outline-secondary" type="submit">-</button>
+                                </form>
+                            </div>
+                            <input type="number" class="form-control text-center" id="quantity_@item.ProductId" min="1" value="@item.Quantity" readonly style="width: 10px;" />
+                            <div class="input-group-append">
+                                <form asp-controller="Carts" asp-action="IncrementQuantity" method="post">
+                                    <input type="hidden" name="productId" value="@item.ProductId" />
+                                    <button class="btn btn-outline-secondary" type="submit">+</button>
+                                </form>
+                            </div>
+                        </div>
+                    </td>
+                    <td>@item.Product.Price.ToString("C")</td>
+                    <td>
+                        @((item.Product.Price * item.Quantity).ToString("C"))</td>
+                    <td>
+                        <form asp-action="RemoveFromCart" method="post">
+                            <input type="hidden" name="productId" value="@item.ProductId" />
+                            <button type="submit" class="btn btn-danger">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <h3>Total: @Model.CartItems.Sum(item => item.Product.Price * item.Quantity).ToString("C")</h3>
+}
+else
+{
+    <p>Your cart is empty.</p>
+}
+
+@if (Model?.CartItems?.Count > 0)
+{
+    <button type="button" class="btn btn-lg btn-success" onclick="location.href='@Url.Action("ConfirmOrder", "Carts")'">Confirm Order</button>
+}
+<a asp-controller="Products" asp-action="Index" class="text-dark">Back to Store</a>

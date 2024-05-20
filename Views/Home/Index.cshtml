@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <section class="hero">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <h1>Welcome, @User.Identity.Name!</h1>
+        }
+        else
+        {
+            <h1>Welcome to Our Beauty Store</h1>
+        }
+        <p>Explore our online store</p>
+    </section>
+</div>

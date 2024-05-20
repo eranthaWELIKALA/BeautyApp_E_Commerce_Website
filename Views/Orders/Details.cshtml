@@ -1,0 +1,43 @@
+﻿@model BeautyApp.Models.Order
+
+@{
+    ViewData["Title"] = "Order Info";
+}
+
+<h1>Order #@Html.DisplayFor(model => model.Id)</h1>
+
+<h4>@Html.DisplayFor(model => model.OrderDate)</h4>
+
+<div>
+    <table class="table" style="max-height: calc(100vh - 200px); overflow-y: auto;">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Product</th>
+                <th class="text-center">Quantity</th>
+                <th class="text-center">Price</th>
+                <th class="text-center">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderItems)
+            {
+                <tr>
+                    <td>
+                        <img src="@item.Product.ImageUrl" class="card-img-top" alt="@item.Product.Name" style="width: 50px; height: 50px; object-fit: cover;" />
+                    </td>
+                    <td>@item.Product.Name</td>
+                    <td class="text-center">@item.Quantity</td>
+                    <td class="text-end">@item.Product.Price.ToString("C")</td>
+                    <td class="text-end">
+                        @((item.Product.Price * item.Quantity).ToString("C"))
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <h3>Total: @Model.OrderItems.Sum(item => item.Product.Price * item.Quantity).ToString("C")</h3>
+</div>
+<div>
+    <a asp-action="Index" class="text-dark">Back to Order History</a>
+</div>

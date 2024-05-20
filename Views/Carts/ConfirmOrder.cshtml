@@ -1,0 +1,33 @@
+﻿@model ConfirmOrderViewModel
+
+@{
+}
+<h1>Confirm Order</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ConfirmOrder" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ReceiverName">Receiver Name</label>
+                <input asp-for="ReceiverName" class="form-control" />
+                <span asp-validation-for="ReceiverName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContactNumber">Contact Number</label>
+                <input asp-for="ContactNumber" class="form-control" />
+                <span asp-validation-for="ContactNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address">Address</label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-success mt-2">Confirm Order</button>
+        </form>
+    </div>
+</div>
+<div class="mt-2">
+    <a asp-controller="Carts" asp-action="Index" class="text-dark">Back to Cart</a>
+</div>
+

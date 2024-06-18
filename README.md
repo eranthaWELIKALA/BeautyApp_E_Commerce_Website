@@ -124,3 +124,15 @@ Implemented using query parameters and form submissions, allowing dynamic update
 
 ## Order Management
 Users can place orders, including details like receiver's name, contact number, and address.
+
+## Screenshots
+![BeautyApp - Login](https://github.com/eranthaWELIKALA/e-commerce-dot-net-core-mvc/assets/33684206/d128af06-5b0e-4b7d-ab1f-32a75872ec5b)
+![BeautyApp - Register](https://github.com/eranthaWELIKALA/e-commerce-dot-net-core-mvc/assets/33684206/28cd1fcf-43cf-40bc-be8a-6fdb2a4fc64c)
+![BeautyApp - Store](https://github.com/eranthaWELIKALA/e-commerce-dot-net-core-mvc/assets/33684206/c4d2db0c-686e-4e0a-a31f-543b981d9374)
+![BeautyApp - Cart](https://github.com/eranthaWELIKALA/e-commerce-dot-net-core-mvc/assets/33684206/381dd433-93bd-42ac-8c82-4c43984b1a17)
+![Screenshot 2024-06-19 005701](https://github.com/eranthaWELIKALA/e-commerce-dot-net-core-mvc/assets/33684206/d1bb0e9d-616f-4930-a931-e8b65e788abf)
+![BeautyApp - Order History](https://github.com/eranthaWELIKALA/e-commerce-dot-net-core-mvc/assets/33684206/9a53f623-4c9f-4bef-9299-278a526644eb)
+![Screenshot 2024-06-19 005816](https://github.com/eranthaWELIKALA/e-commerce-dot-net-core-mvc/assets/33684206/2568412d-440e-4e63-b130-10a3d1696e87)
+![BeautyApp - Order History View](https://github.com/eranthaWELIKALA/e-commerce-dot-net-core-mvc/assets/33684206/d792646b-7075-44d7-84ae-01be57e90a25)
+![BeautyApp - Home](https://github.com/eranthaWELIKALA/e-commerce-dot-net-core-mvc/assets/33684206/506f050f-016e-4103-ba1e-f2d642dcda40)
+
